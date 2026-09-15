@@ -152,4 +152,20 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
+
+    @ExceptionHandler(LoanRequestAlreadyExistsException.class)
+    public ResponseEntity<ApiErrorResponse> handleLoanRequestAlreadyExistsException(
+            LoanRequestAlreadyExistsException ex,
+            HttpServletRequest request
+    ) {
+        ApiErrorResponse errorResponse = ApiErrorResponse.builder()
+                .error("Loan Request Conflict")
+                .message(ex.getMessage())
+                .statusCode(HttpStatus.CONFLICT.value())
+                .path(request.getRequestURI())
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
 }

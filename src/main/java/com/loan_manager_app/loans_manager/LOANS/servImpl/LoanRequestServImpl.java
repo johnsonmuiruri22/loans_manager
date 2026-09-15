@@ -10,6 +10,7 @@ import com.loan_manager_app.loans_manager.LOANS.service.LoanRequestService;
 import com.loan_manager_app.loans_manager.LOANS.DTOS.LoanRequestDTO;
 import com.loan_manager_app.loans_manager.LOANS.loan_api.LoanRequestCreatedEvent;
 import com.loan_manager_app.loans_manager.SHARED.ENUMS.LogType;
+import com.loan_manager_app.loans_manager.SHARED.Exceptions.LoanRequestAlreadyExistsException;
 import com.loan_manager_app.loans_manager.SHARED.deviceInfo.DeviceInfo;
 import com.loan_manager_app.loans_manager.SHARED.deviceInfo.DeviceInfoExtractor;
 import jakarta.transaction.Transactional;
@@ -43,7 +44,7 @@ public class LoanRequestServImpl implements LoanRequestService {
                 customerLookupService.hasActiveLoanRequest(customerId);
 
         if (customerHasExistingLoan) {
-            throw new RuntimeException("Customer already has an existing loan request");
+            throw new LoanRequestAlreadyExistsException("Customer already has an existing loan request");
         }
 
         DeviceInfo deviceInfo = deviceInfoExtractor.extract();
