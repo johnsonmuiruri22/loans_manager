@@ -1,0 +1,17 @@
+package com.loan_manager_app.loans_manager.SHARED.ENUMS;
+
+public enum LogType {
+    REGISTERED,
+    UPDATED,
+    DELETED,
+    LOGGED_IN,
+    LOGGED_OUT,
+    CUSTOMER_CREATED,
+    CUSTOMER_UPDATED,
+    CUSTOMER_DELETED,
+    LOAN_REQUESTED,
+    LOAN_APPROVED,
+    LOAN_REJECTED,
+    LOAN_REPAYMENT,
+    LOAN_REPAYMENT_INITIALIZED
+}
